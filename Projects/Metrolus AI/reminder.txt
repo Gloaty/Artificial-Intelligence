@@ -1,0 +1,21 @@
+This text file is a reminder to myself that the project need to be contained within
+a .ipynb file, since the jupyter environment appears to be more suited to the branch
+of machine learning
+
+This project, in total, is simply 1 image classification artificial intelligence
+contained within a single file, opposed to multuiple files for different image sets. 
+
+I wish to give this a GUI interface, so I'll need to do some research on whether tkinter
+can work in a jupyter notebook. I'll create a few .ipynb files imitating those of the 
+same name, but with the .py file extension. 
+
+The work shall be performed in those files, and git shall get steady updates on the status
+of the project, so I'll need to keep up witht that. 
+
+After I've fully written my thoughts in this .txt file, I'll push the folder and its 
+changes to git, so i dont have to worry about it for a while. Supposedly there are 156
+files to be pushed to git, but i doubt that. It is feasibly possible, because i did change
+the file organization in the overall folder, so it is possible. 
+
+Gloaty, logging off and pushing to git
+                    20:48, 09/10/22

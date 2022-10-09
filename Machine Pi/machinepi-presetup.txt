@@ -1,0 +1,33 @@
+sudo nano ~/.bashrc
+
+Use this command in the terminal, and then copy the code below at the bottom
+of the file, then CTRL + S, CTRL + X
+
+export PATH="$HOME/.pyenv/bin:$PATH"
+eval "$(pyenv init --path)"
+eval "$(pyenv virtualenv-init -)"
+
+Once the entire setup has completed, re-enter the nano command above and remove
+the lines of code you added
+
+There are 3 "reaches" you can choose for your python downgrade. They are listed
+below. 
+
+local
+Only use the Python version for the current terminal directory. Every other directory is the default Python version
+shell
+Only use the Python version for the current terminal. When you exit the terminal the Python version will reset.
+global
+Set the Python version for everything.
+
+The lines of code below can be used to unset your python downgrade, or remove 
+your ability to modify your python version
+
+Unset Downgrade: pyenv <THE REACH YOU CHOSE> --unset
+
+Remove Pyenv: rm -fr ~/.pyenv
+
+Know that you may have to install matplotlib inside your IDE's terminal. I use 
+VSCode, and I do have to install it in the terminal. Use this command to install it. 
+
+pip install matplotlib

@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<!-- saved from url=(0065)https://magpi.raspberrypi.com/articles/tensorflow-ai-raspberry-pi -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+
+<title>How to install TensorFlow on Raspberry Pi — The MagPi magazine</title>
+
+<meta name="csrf-param" content="authenticity_token">
+<meta name="csrf-token" content="gwYm5JKK9iLql9UGi-6SENAPl_UOqFRxExs1BK4kSbUTp6mkGLAeRO2UwFlq8-gchP7PFz4O0PDQJLIsuJdI7w">
+<meta name="shopify-domain" content="the-magpi-store.myshopify.com">
+<meta name="shopify-storefront-access-token" content="bf21f654fb41fc67a48959c863bc73da">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://images.ctfassets.net/2lpsze4g694w/5dzWAsSOcubaX9SresTJ4d/22bfa46851733d403f702dc8215dc119/tensorflow-logo.jpg?w=800">
+<meta name="twitter:title" content="How to install TensorFlow on Raspberry Pi — The MagPi magazine">
+<meta property="og:description" content="Google TensorFlow 1.9 officially available for Raspberry Pi. Discover how to install TensorFlow framework to learn AI techniques and add AI to your future projects">
+<meta property="og:image" content="https://images.ctfassets.net/2lpsze4g694w/5dzWAsSOcubaX9SresTJ4d/22bfa46851733d403f702dc8215dc119/tensorflow-logo.jpg?w=800">
+<meta property="og:locale" content="en_GB">
+<meta property="og:site_name" content="The MagPi magazine">
+<meta property="og:title" content="How to install TensorFlow on Raspberry Pi — The MagPi magazine">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://magpi.raspberrypi.com/articles/tensorflow-ai-raspberry-pi">
+
+  <meta name="twitter:site" content="@TheMagPi">
+  <meta name="twitter:creator" content="@TheMagPi">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<link rel="icon" type="image/png" href="https://magazines-assets.raspberrypi.org/assets/magpi/favicon-2078abe5477dfeb7a273e1826d821a28a4e988fe.png">
+
+<link rel="stylesheet" href="./How to install TensorFlow on Raspberry Pi — The MagPi magazine_files/magpi-cb9d3fe54fc38709ad67870fafdcac54ecf4aaa8.css" data-turbolinks-track="reload" media="screen">
+
+  <link rel="stylesheet" href="./How to install TensorFlow on Raspberry Pi — The MagPi magazine_files/prism-tomorrow.min.css" media="screen">
+
+
+  <script src="./How to install TensorFlow on Raspberry Pi — The MagPi magazine_files/js" async="async"></script>
+<script>
+  window.GA_MEASUREMENT_ID = 'UA-180927933-1';
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', GA_MEASUREMENT_ID, { 'anonymize_ip': true, send_page_view: false });
+</script>
+
+
+<script src="./How to install TensorFlow on Raspberry Pi — The MagPi magazine_files/gpt.js" async="async"></script>
+<script src="./How to install TensorFlow on Raspberry Pi — The MagPi magazine_files/buybutton.js"></script>
+
+<script src="./How to install TensorFlow on Raspberry Pi — The MagPi magazine_files/application-b2ada1341f3551be8e4d5371963e4ba69de2a922.js" data-turbolinks-track="reload"></script>
+
+  <link rel="alternate" type="application/rss+xml" title="The MagPi" href="https://magpi.raspberrypi.com/articles">
+
+
+  <style>.shopify-buy-modal-is-active {
+  height: 100%;
+  overflow: auto;
+}
+
+.shopify-buy-frame {
+  display: inline-block
+}
+
+.shopify-buy-frame iframe {
+    width: 100%;
+    display: block;
+    height: 0;
+    overflow: hidden;
+  }
+
+.shopify-buy-frame--cart {
+  width: 100%;
+  max-width: 350px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  z-index: 2147483647;
+  transform: translateX(100%);
+  -webkit-transform: translateX(100%)
+}
+
+.shopify-buy-frame--cart iframe {
+    height: 100%;
+  }
+
+.shopify-buy-frame--cart.is-initialized {
+    -webkit-transition: all 250ms cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: all 250ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+
+.shopify-buy-frame--cart.is-active {
+    transform: translateX(0);
+    -webkit-transform: translateX(0);
+  }
+
+.shopify-buy-frame--product {
+  display: block
+}
+
+.shopify-buy-frame--product.shopify-buy__layout-horizontal {
+    display: block;
+    margin-left: auto;
+
+    margin-right: auto
+  }
+
+.shopify-buy-frame--product.shopify-buy__layout-horizontal iframe {
+      max-width: 100%
+    }
+
+@media (min-width: 950px) {
+
+.shopify-buy-frame--product.shopify-buy__layout-horizontal iframe {
+        max-width: 950px;
+        margin-left: auto;
+        margin-right: auto
+    }
+      }
+
+.shopify-buy-frame--toggle {
+  display: inline-block
+}
+
+.shopify-buy-frame--toggle:not(.is-sticky) {
+    overflow: hidden;
+    padding: 5px;
+  }
+
+.shopify-buy-frame--toggle.is-sticky {
+    display: none;
+    position: fixed;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    z-index: 2147483645;
+  }
+
+.shopify-buy-frame--toggle.is-active.is-sticky {
+    display: block;
+  }
+
+.is-active .shopify-buy-frame--toggle iframe {
+      min-height: 67px;
+    }
+
+.shopify-buy-frame--productSet {
+  width: 100%;
+}
+
+.shopify-buy-frame--modal {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 2147483646;
+  display: none;
+  -webkit-transition: background 300ms ease;
+  transition: background 300ms ease
+}
+
+.shopify-buy-frame--modal iframe {
+    height: 100%;
+    width: 100%;
+    max-width: none;
+  }
+
+.shopify-buy-frame--modal.is-active {
+    background: rgba(0,0,0,0.6);
+  }
+
+.shopify-buy-frame--modal.is-block {
+    display: block;
+  }
+</style></head>
+
+  <body>
+      <header class="c-header">
+  <div class="c-container__container o-container">
+    <a class="c-home-link" href="https://magpi.raspberrypi.com/">
+      <img alt="The MagPi magazine" class="c-home-link__logo" src="./How to install TensorFlow on Raspberry Pi — The MagPi magazine_files/logo-6403b32963b1a757fc2567ca6d273f7dd01e6a5d.png">
+</a>
+    <div class="c-header-social">
+      <ul class="c-social-list">
+    <li class="c-social-list__item">
+      <a class="c-social-list__link" href="https://www.youtube.com/channel/UCgZlbxTljh1aXKijTRye5bA">
+        <svg height="30px" version="1.1" viewBox="0 0 60 60" width="30px" x="0px" xml:space="preserve" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+  <path class="svg-path" fill="#bc1e44" fill-rule="evenodd" d="M56.35 16.676a6.91 6.91 0 00-4.862-4.894C47.199 10.625 30 10.625 30 10.625s-17.2 0-21.488 1.157a6.91 6.91 0 00-4.863 4.894C2.5 20.993 2.5 30 2.5 30s0 9.007 1.15 13.324a6.911 6.911 0 004.862 4.894C12.8 49.375 30 49.375 30 49.375s17.2 0 21.488-1.157a6.91 6.91 0 004.863-4.894C57.5 39.007 57.5 30 57.5 30s0-9.007-1.15-13.324 M24.375 38.178L38.75 30l-14.375-8.178v16.356z"></path>
+</svg>
+
+        <span class="u-visually-hidden">Subscribe to The MagPi on YouTube</span>
+</a>    </li>
+
+    <li class="c-social-list__item">
+      <a class="c-social-list__link" href="https://www.facebook.com/MagPiMagazine">
+        <svg height="30px" version="1.1" viewBox="0 0 60.734 60.733" width="30px" x="0px" xml:space="preserve" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" y="0px">
+  <path class="svg-path" d="
+      M57.378,0.001H3.352C1.502,0.001,0,1.5,0,3.353v54.026c0,1.853,1.502,3.354,3.352,3.354h29.086V37.214h-7.914v-9.167h7.914
+      v-6.76c0-7.843,4.789-12.116,11.787-12.116c3.355,0,6.232,0.251,7.071,0.36v8.198l-4.854,0.002c-3.805,0-4.539,1.809-4.539,4.462
+      v5.851h9.078l-1.187,9.166h-7.892v23.52h15.475c1.852,0,3.355-1.503,3.355-3.351V3.351C60.731,1.5,59.23,0.001,57.378,0.001z
+    " fill="#bc1e44"></path>
+</svg>
+
+        <span class="u-visually-hidden">Like The MagPi on Facebook</span>
+</a>    </li>
+
+    <li class="c-social-list__item">
+      <a class="c-social-list__link" href="https://twitter.com/TheMagPi">
+        <svg height="30px" version="1.1" viewBox="0 0 612 612" width="30px" x="0px" xml:space="preserve" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" y="0px">
+  <path class="svg-path" d="
+      M612,116.258c-22.525,9.981-46.694,16.75-72.088,19.772c25.929-15.527,45.777-40.155,55.184-69.411
+      c-24.322,14.379-51.169,24.82-79.775,30.48c-22.907-24.437-55.49-39.658-91.63-39.658c-69.334,0-125.551,56.217-125.551,125.513
+      c0,9.828,1.109,19.427,3.251,28.606C197.065,206.32,104.556,156.337,42.641,80.386c-10.823,18.51-16.98,40.078-16.98,63.101
+      c0,43.559,22.181,81.993,55.835,104.479c-20.575-0.688-39.926-6.348-56.867-15.756v1.568c0,60.806,43.291,111.554,100.693,123.104
+      c-10.517,2.83-21.607,4.398-33.08,4.398c-8.107,0-15.947-0.803-23.634-2.333c15.985,49.907,62.336,86.199,117.253,87.194
+      c-42.947,33.654-97.099,53.655-155.916,53.655c-10.134,0-20.116-0.612-29.944-1.721c55.567,35.681,121.536,56.485,192.438,56.485
+      c230.948,0,357.188-191.291,357.188-357.188l-0.421-16.253C573.872,163.526,595.211,141.422,612,116.258z
+    " fill="#bc1e44"></path>
+</svg>
+
+        <span class="u-visually-hidden">Follow The MagPi on Twitter</span>
+</a>    </li>
+
+    <li class="c-social-list__item">
+      <a class="c-social-list__link" href="https://magpi.raspberrypi.com/feed">
+        <svg height="30px" version="1.1" viewBox="0 0 430.117 430.118" width="30px" x="0px" xml:space="preserve" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" y="0px">
+  <path class="svg-path" d="
+      M97.493,332.473c10.419,10.408,16.755,24.525,16.794,40.244c-0.04,15.687-6.375,29.809-16.755,40.17l-0.04,0.019
+      c-10.398,10.352-24.603,16.681-40.398,16.681c-15.775,0-29.944-6.348-40.34-16.699C6.384,402.526,0,388.422,0,372.717
+      c0-15.719,6.384-29.869,16.754-40.253v0.009c10.401-10.36,24.57-16.735,40.34-16.735C72.89,315.738,87.081,322.131,97.493,332.473z
+      M97.493,332.464v0.009c0.019,0,0.019,0,0.019,0L97.493,332.464z M16.754,412.906c0,0,0,0,0-0.019c-0.019,0-0.019,0-0.019,0
+      L16.754,412.906z M0.046,146.259v82.129c53.618,0.033,104.328,21.096,142.278,59.104c37.943,37.888,58.917,88.675,59.003,142.477
+      h0.028v0.149h82.467c-0.065-78.233-31.866-149.099-83.279-200.549C149.122,178.126,78.285,146.308,0.046,146.259z M0.196,0v82.089
+      c191.661,0.14,347.464,156.184,347.594,348.028h82.327c-0.056-118.571-48.248-225.994-126.132-303.932
+      C226.073,48.274,118.721,0.051,0.196,0z
+    " fill="#bc1e44"></path>
+</svg>
+
+        <span class="u-visually-hidden">Subscribe to the The MagPi RSS feed</span>
+</a>    </li>
+</ul>
+
+    </div>
+  </div>
+
+  <nav class="c-header__nav">
+    <div class="o-container">
+      <ul class="c-nav">
+          <li class="c-nav__item">
+            <a class="c-nav__link" href="https://magpi.raspberrypi.com/articles">Articles</a>
+          </li>
+          <li class="c-nav__item">
+            <a class="c-nav__link" href="https://magpi.raspberrypi.com/articles/category/tutorials">Tutorials</a>
+          </li>
+          <li class="c-nav__item">
+            <a class="c-nav__link" href="https://magpi.raspberrypi.com/articles/category/reviews">Reviews</a>
+          </li>
+          <li class="c-nav__item">
+            <a class="c-nav__link" href="https://magpi.raspberrypi.com/issues">Issues</a>
+          </li>
+          <li class="c-nav__item">
+            <a class="c-nav__link" href="https://magpi.raspberrypi.com/books">Books</a>
+          </li>
+          <li class="c-nav__item">
+            <a class="c-nav__link" href="https://magpi.raspberrypi.com/subscribe/new">Subscribe</a>
+          </li>
+          <li class="c-nav__item">
+            <a class="c-nav__link" href="https://store.rpipress.cc/collections/the-magpi-essentials">Buy now</a>
+          </li>
+          <li class="c-nav__item">
+            <a class="c-nav__link" href="https://magpi.raspberrypi.com/advertisers">Advertise</a>
+          </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+      <main>
+        
+        <div id="gpt-ad-XsKPhkMVW3GbVeK9" data-ad-unit-path="/21917283373/magpi" data-ad-size="leaderboard" class="u-pv u-text-center"></div>
+
+<article>
+  <header class="c-slice u-bgcolor-white u-pb-x0">
+  <div class="o-container">
+    <div class="o-grid o-grid--center">
+      <div class="o-grid__col u-8/12@md">
+        <h1 class="o-type-display rspec-article-title">How to install TensorFlow on Raspberry Pi</h1>
+        <p class="c-type-caption u-mb u-color-ui-grey-medium">
+          By <a class="c-link" href="https://magpi.raspberrypi.com/articles/author/2dilV4lV5x7gco4CMOrxBb">Rob Zwetsloot</a>.
+          Posted
+          <time datetime="2018-08-06T10:00:40+00:00" class="rspec-article-date">almost 4 years ago.</time>
+        </p>
+
+        <ul class="o-list o-list--inline rspec-article-sharing-options">
+          <li class="o-list__item">
+            Share on:
+          </li>
+          <li class="o-list__item">
+            <a class="c-link rspec-article-share-option-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://magpi.raspberrypi.com/articles/tensorflow-ai-raspberry-pi" target="_blank">
+              <svg height="15px" version="1.1" viewBox="0 0 60.734 60.733" width="15px" x="0px" xml:space="preserve" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" y="0px">
+  <path class="svg-path" d="
+      M57.378,0.001H3.352C1.502,0.001,0,1.5,0,3.353v54.026c0,1.853,1.502,3.354,3.352,3.354h29.086V37.214h-7.914v-9.167h7.914
+      v-6.76c0-7.843,4.789-12.116,11.787-12.116c3.355,0,6.232,0.251,7.071,0.36v8.198l-4.854,0.002c-3.805,0-4.539,1.809-4.539,4.462
+      v5.851h9.078l-1.187,9.166h-7.892v23.52h15.475c1.852,0,3.355-1.503,3.355-3.351V3.351C60.731,1.5,59.23,0.001,57.378,0.001z
+    " fill="#222222"></path>
+</svg>
+
+              Facebook
+            </a>
+          </li>
+          <li class="o-list__item">
+            <a class="c-link rspec-article-share-option-linkedin" href="https://www.linkedin.com/sharing/share-offsite/?url=https://magpi.raspberrypi.com/articles/tensorflow-ai-raspberry-pi" target="_blank">
+              <svg height="15px" width="15px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path fill="#222222" d="m20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667h-3.554v-11.452h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zm-15.11-13.019c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019h-3.564v-11.452h3.564zm15.106-20.452h-20.454c-.979 0-1.771.774-1.771 1.729v20.542c0 .956.792 1.729 1.771 1.729h20.451c.978 0 1.778-.773 1.778-1.729v-20.542c0-.955-.8-1.729-1.778-1.729z"></path>
+</svg>
+
+              LinkedIn
+            </a>
+          </li>
+          <li class="o-list__item">
+            <a class="c-link rspec-article-share-option-pinterest" href="http://pinterest.com/pin/create/button/?url=https://magpi.raspberrypi.com/articles/tensorflow-ai-raspberry-pi" target="_blank">
+              
+<svg height="15px" width="15px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path fill="#222222" d="m12.017 0c-6.621 0-11.988 5.367-11.988 11.987 0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987 0-6.623-5.378-11.987-11.985-11.987z"></path>
+</svg>
+
+              Pinterest
+            </a>
+          </li>
+          <li class="o-list__item">
+            <a class="c-link rspec-article-share-option-reddit" href="https://reddit.com/submit?title=How%20to%20install%20TensorFlow%20on%20Raspberry%20Pi&amp;url=https://magpi.raspberrypi.com/articles/tensorflow-ai-raspberry-pi" target="_blank">
+              
+<svg height="15px" width="15px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path fill="#222222" d="m12 0a12 12 0 0 0 -12 12 12 12 0 0 0 12 12 12 12 0 0 0 12-12 12 12 0 0 0 -12-12zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1 -2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87s-7.004-2.176-7.004-4.87c0-.183.015-.366.043-.534a1.748 1.748 0 0 1 -1.039-1.6c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zm-7.76 7.256c-.689 0-1.25.562-1.25 1.25 0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249s-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248s1.249-.561 1.249-1.249c0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0 -.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913s2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0 -.464 0c-.547.533-1.684.73-2.512.73s-1.979-.196-2.512-.73a.326.326 0 0 0 -.232-.095z"></path></svg>
+
+
+              Reddit
+            </a>
+          </li>
+          <li class="o-list__item">
+            <a class="c-link rspec-article-share-option-twitter" href="https://twitter.com/intent/tweet?text=How%20to%20install%20TensorFlow%20on%20Raspberry%20Pi&amp;url=https://magpi.raspberrypi.com/articles/tensorflow-ai-raspberry-pi&amp;via=twitter" target="_blank">
+              <svg height="15px" version="1.1" viewBox="0 0 612 612" width="15px" x="0px" xml:space="preserve" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" y="0px">
+  <path class="svg-path" d="
+      M612,116.258c-22.525,9.981-46.694,16.75-72.088,19.772c25.929-15.527,45.777-40.155,55.184-69.411
+      c-24.322,14.379-51.169,24.82-79.775,30.48c-22.907-24.437-55.49-39.658-91.63-39.658c-69.334,0-125.551,56.217-125.551,125.513
+      c0,9.828,1.109,19.427,3.251,28.606C197.065,206.32,104.556,156.337,42.641,80.386c-10.823,18.51-16.98,40.078-16.98,63.101
+      c0,43.559,22.181,81.993,55.835,104.479c-20.575-0.688-39.926-6.348-56.867-15.756v1.568c0,60.806,43.291,111.554,100.693,123.104
+      c-10.517,2.83-21.607,4.398-33.08,4.398c-8.107,0-15.947-0.803-23.634-2.333c15.985,49.907,62.336,86.199,117.253,87.194
+      c-42.947,33.654-97.099,53.655-155.916,53.655c-10.134,0-20.116-0.612-29.944-1.721c55.567,35.681,121.536,56.485,192.438,56.485
+      c230.948,0,357.188-191.291,357.188-357.188l-0.421-16.253C573.872,163.526,595.211,141.422,612,116.258z
+    " fill="#222222"></path>
+</svg>
+
+              Twitter
+            </a>
+          </li>
+          <li class="o-list__item">
+            <a class="c-link rspec-article-share-option-whatsapp" href="https://api.whatsapp.com/send?text=How%20to%20install%20TensorFlow%20on%20Raspberry%20Pi%20https://magpi.raspberrypi.com/articles/tensorflow-ai-raspberry-pi" target="_blank">
+              
+<svg height="15px" width="15px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path fill="#222222" d="m17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52s-.669-1.612-.916-2.207c-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413s.248-1.289.173-1.413c-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1 -5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1 -1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297a11.815 11.815 0 0 0 -8.413-3.488c-6.555 0-11.89 5.335-11.893 11.892 0 2.096.547 4.142 1.588 5.945l-1.688 6.163 6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0 -3.48-8.413z"></path>
+</svg>
+
+              WhatsApp
+            </a>
+          </li>
+        </ul></div>
+      </div>
+    </div>
+  
+</header>
+
+  <div class="c-slice u-bgcolor-white">
+  <div class="o-container">
+    <div class="o-grid o-grid--center">
+      <div class="o-grid__col u-8/12@md">
+          <figure class="c-figure">
+            <img alt="" class="c-figure__image rspec-article-featured-image" src="./How to install TensorFlow on Raspberry Pi — The MagPi magazine_files/tensorflow-logo.jpg">
+          </figure>
+
+        <div class="c-wysiwyg rspec-article-introduction">
+          <p>Google TensorFlow 1.9 officially available for Raspberry Pi. Discover how to install TensorFlow framework to learn AI techniques and add AI to your future projects</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <aside class="c-slice u-box-shadow-inset">
+    <div class="o-container">
+      <div class="o-grid o-grid--center o-grid--top">
+        <div class="o-grid__col u-12/12 u-3/12@sm u-pb">
+          <img alt="The MagPi issue 120 cover" class="rspec-article-boxout-image" src="./How to install TensorFlow on Raspberry Pi — The MagPi magazine_files/001_MagPi120_COVER_v5_nospine.jpg" width="240" height="310">
+        </div>
+
+        <div class="o-grid__col u-12/12 u-9/12@sm u-5/12@lg">
+          <h1 class="c-type-heading rspec-article-boxout-heading">
+            The MagPi issue 120 out now
+          </h1>
+
+          <p class="c-type-base rspec-article-boxout-text">
+            Your first foray into robotics needn’t be scary. Discover easy robot kits, and low-cost parts, and get help with your first robot build in The MagPi magazine.
+          </p>
+
+          <div class="c-issue-actions">
+    <div data-shopify-product-handle="the-magpi-magazine-120" class="c-issue-actions__button">
+      <a class="c-button c-button--block u-hidden" data-fallback="true" href="https://store.rpipress.cc/products/the-magpi-magazine-120">Buy now</a>
+<div class=" shopify-buy-frame shopify-buy-frame--product"><div class="has-image shopify-buy__layout-vertical shopify-buy__product"><div class="shopify-buy__btn-wrapper" data-element="product.buttonWrapper"><button class="c-button c-button--block  " data-element="product.button">Buy now</button></div></div></div></div>
+    <div class="c-issue-actions__button">
+      <a class="c-button c-button--block" href="https://magpi.raspberrypi.com/subscribe/new">Subscribe</a>
+    </div>
+
+    <div class="c-issue-actions__button">
+      <a href="https://itunes.apple.com/us/app/the-magpi-magazine/id972033560?ls=1&amp;mt=8">
+        <img class="c-issue-actions__badge" src="./How to install TensorFlow on Raspberry Pi — The MagPi magazine_files/apple-app-store-0a9285e2dab19bdf07b2cefdaec13b1bdf3737bd.png">
+</a>    </div>
+
+    <div class="c-issue-actions__button">
+      <a href="https://play.google.com/store/apps/details?id=com.raspberry.magpi">
+        <img class="c-issue-actions__badge" src="./How to install TensorFlow on Raspberry Pi — The MagPi magazine_files/google-play-store-57a690fa1754b6a6d51092103eb11e3512ae7c39.png">
+</a>    </div>
+
+      <a class="c-issue-actions__link c-link u-text-bold" href="https://magpi.raspberrypi.com/issues/120/pdf">Download Free PDF</a>
+</div>
+
+        </div>
+
+        <div id="gpt-ad-htqfTo9KcGLDz8wF" data-ad-unit-path="/21917283373/magpi" data-ad-size="mpu" class="u-pv u-text-center o-grid__col u-pv-x0@lg u-12/12 u-4/12@lg"></div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="c-slice u-bgcolor-white u-pb">
+  <div class="o-container">
+    <div class="o-grid o-grid--center">
+      <div class="o-grid__col u-8/12@md">
+        <div class="c-wysiwyg js-add-captions rspec-article-body">
+          <p>Google TensorFlow 1.9 officially supports the Raspberry Pi, making it possible to quickly install TensorFlow and start learning AI techniques with a Raspberry Pi.</p>
+
+<p>Back in <a href="http://magpi.cc/71">The MagPi issue 71</a> we noted that it was getting easier to install TensorFlow on a Raspberry Pi. This latest news makes installing TensorFlow 1.9 as simple as using pip.</p>
+
+<p><a href="https://medium.com/tensorflow/tensorflow-1-9-officially-supports-the-raspberry-pi-b91669b0aa0">Pete Warden, a Software Engineer at Google</a> writes</p>
+
+<p></p><blockquote>Thanks to a collaboration with the&nbsp;<a class="markup--anchor markup--p-anchor" href="https://www.raspberrypi.org/" target="_blank" rel="nofollow noopener" data-href="https://www.raspberrypi.org/">Raspberry Pi Foundation</a>, we’re now happy to say that the latest 1.9 release of TensorFlow can be installed from pre-built binaries using Python’s pip package system!</blockquote><br><p></p>
+
+<h3><strong>How to</strong>&nbsp;Install TensorFlow on a Raspberry Pi</h3>
+
+<p>Open a Terminal window and enter:</p>
+
+<pre class="  language-shell-session"><code class="  language-shell-session"><span class="token output">sudo apt install libatlas-base-dev
+pip3 install tensorflow</span></code></pre>
+
+<h3>What is Google Tensorflow</h3>
+
+<p>Google TensorFlow is a powerful open-source software framework used to power AI projects around the globe.</p>
+
+<p>TensorFlow is used for machine learning and the creation of neural networks. These make it possible for computers to perform increasingly complex tasks, such as image recognition and text analysis.</p>
+
+<p>When it comes to AI, most people think of powerful supercomputers crunching billions of numbers in giant databanks. But there are two parts to machine learning. There is a train/test part, where you use a lot of data to build a model. And there’s deployment, where you take a model and use it as part of a project. And that’s where the Raspberry Pi&nbsp;fits in.</p>
+
+<p>Although Raspberry Pi isn’t officially supported by Google, there are example models included for the Raspberry Pi and it can be fun to get TensorFlow up and running on a Pi. And there are lots of interesting community projects around that put TensorFlow to good use.</p>
+
+<p>Using TensorFlow can give you a good understanding of how AI works, and how to put AI to practical use in your projects.</p>
+
+<p><a href="./How to install TensorFlow on Raspberry Pi — The MagPi magazine_files/playground_tensorflow.png"><div class="c-figure"><img src="./How to install TensorFlow on Raspberry Pi — The MagPi magazine_files/playground_tensorflow.png" alt=" TensorFlow Playground (playground.tensorflow.com) visualises the TensorFlow learning process" class="c-figure__image"><span class="c-figure__caption"> TensorFlow Playground (playground.tensorflow.com) visualises the TensorFlow learning process</span></div></a></p>
+
+<h3>Write Hello World in TensorFlow</h3>
+
+<p>Hopefully, you now have TensorFlow up and running. So let’s start it up. Open Python 3 (IDLE) using Menu &gt; Programming &gt; Python 3 (IDLE). Choose File &gt; New File and enter the <code>hello_tensorflow.py</code> code:</p>
+
+<pre class="  language-python"><code class="  language-python"><span class="token keyword">import</span> tensorflow <span class="token keyword">as</span> tf
+hello <span class="token operator">=</span> tf<span class="token punctuation">.</span>constant<span class="token punctuation">(</span><span class="token string">'Hello, TensorFlow!'</span><span class="token punctuation">)</span>
+sess <span class="token operator">=</span> tf<span class="token punctuation">.</span>Session<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>sess<span class="token punctuation">.</span>run<span class="token punctuation">(</span>hello<span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+
+<p>Save the code file as hello_tensorflow.py and Choose Run &gt; Run Module. You will get a warning because TensorFlow is compiled for Python 3.4 and we’re running Python 3.5. Don’t worry, the code works. The Python shell will display:</p>
+
+<p><code>Hello, TensorFlow!</code></p>
+
+<p><a href="./How to install TensorFlow on Raspberry Pi — The MagPi magazine_files/hello_tensorflow.jpg"><div class="c-figure"><img class="alignnone size-full wp-image-6806 c-figure__image" src="./How to install TensorFlow on Raspberry Pi — The MagPi magazine_files/hello_tensorflow.jpg" alt="" width="580" height="339"><span class="c-figure__caption"></span></div></a></p>
+
+<h3>TensorFlow example code</h3>
+
+<p>Google has a bunch of models developed for Raspberry Pi that you can test out. Start by cloning the TensorFlow repository:</p>
+
+<pre class="  language-shell-session"><code class="  language-shell-session"><span class="token output">git clone https://github.com/tensorflow/tensorflow.git</span></code></pre>
+
+<p>Follow the <a href="http://magpi.cc/BrsbKi">instructions here&nbsp; to build the example models</a>.</p>
+
+<p>Now head to the part of the <a href="http://magpi.cc/sGOzbr">TensorFlow repository&nbsp; to find Google example models and instructions</a>.</p>
+
+<p>The default example is a picture of Grace Hopper. Run it and you will see that it identifies a ‘military uniform’, ‘suit’, and ‘academic gown’ (and then other items in order of decreasing probability). From here you can see how this model could be used to identify objects in your own images, and use that in your own code. There is also a link to an example that uses the <a href="http://www.richardmudhar.com/blog/2015/02/raspberry-pi-camera-and-motion-out-of-the-box-sparrowcam/">Pi Camera Module</a> directly.</p>
+
+<p><a href="./How to install TensorFlow on Raspberry Pi — The MagPi magazine_files/tensorflow_grace_hopper.jpg"><div class="c-figure"><img class="alignnone size-full wp-image-6807 c-figure__image" src="./How to install TensorFlow on Raspberry Pi — The MagPi magazine_files/tensorflow_grace_hopper.jpg" alt="TensorFlow example code" width="580" height="326"><span class="c-figure__caption">TensorFlow example code</span></div></a></p>
+
+<h3>Community help with TensorFlow</h3>
+
+<p>Now you have everything you need to start using TensorFlow. It’s a big subject and there’s far more to it than we could outline in this tutorial (or even this entire magazine). Learn by doing and follow some TensorFlow projects. Start with Sarthak Jain’s <a href="https://medium.com/nanonets/how-to-easily-detect-objects-with-deep-learning-on-raspberrypi-225f29635c74">‘How to easily detect objects with deep learning on Raspberry Pi’</a> or Alasdair Allan’s <a href="https://medium.com/@aallan/a-magic-mirror-with-added-tensorflow-b8fcc5528a6">‘Magic mirror with TensorFlow’</a>.</p>
+
+<h3>Build TensorFlow from wheel</h3>
+
+<p>You can try to build TensorFlow using the wheel file. In a Terminal, enter:</p>
+
+<pre class="  language-shell-session"><code class="  language-shell-session"><span class="token output">sudo pip3 install --upgrade https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-1.8.0-cp34-cp34m-linux_x86_64.whl</span></code></pre>
+
+<p>Alternatively, you can use a nightly wheel built for Raspberry Pi, which is available from magpi.cc/xKLBzu. Download the wheel file and run it, like this:</p>
+
+<pre class="  language-shell-session"><code class="  language-shell-session"><span class="token output">sudo pip3 install --upgrade tensorflow-1.9.0rc0-cp34-none-linux_armv7l.whl</span></code></pre>
+
+<p>Take a look at TensorFlow’s <a href="https://www.tensorflow.org/versions/r1.1/install/install_sources">Install Sources page</a> or <a href="https://www.tensorflow.org/install/install_linux#common_installation_problems">Common Installation Problems page</a>.</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <footer class="c-slice u-bgcolor-white u-pt-x0">
+    <div class="o-container">
+      <div class="o-grid o-grid--center">
+        <div class="o-grid__col u-8/12@md">
+          <hr class="c-hr">
+
+          <div class="o-media o-media--res">
+              <div class="o-media__fixed">
+                <img alt="" class="rspec-article-author-image" src="./How to install TensorFlow on Raspberry Pi — The MagPi magazine_files/RobMagPi1000.JPG" width="60" height="60">
+              </div>
+
+            <div class="o-media__fluid">
+              <p class="c-type-sub-heading rspec-article-author-name"><a class="c-link" href="https://magpi.raspberrypi.com/articles/author/2dilV4lV5x7gco4CMOrxBb">Rob Zwetsloot</a></p>
+
+                <p class="c-type-base rspec-article-author-biography">
+                  Rob is amazing. He’s also the Features Editor of The MagPi, a hobbyist maker, cosplayer, comic book writer, and extremely modest.
+                </p>
+
+                <p class="c-type-base">
+                  <a class="c-link" href="https://twitter.com/RobThez">https://twitter.com/RobThez</a>
+                </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</article>
+
+  <div class="c-slice">
+    <div class="o-container">
+      <h2 class="c-type-heading u-text-center">From The MagPi store</h2>
+      <div data-shopify-collection-id="171314806883"><div class=" shopify-buy-frame shopify-buy-frame--productSet"><iframe horizontalscrolling="no" verticalscrolling="no" allowtransparency="true" frameborder="0" scrolling="no" name="frame-productSet-171314806883" style="width: 100%; overflow: hidden; border: none; height: 1102.77px;" src="./How to install TensorFlow on Raspberry Pi — The MagPi magazine_files/saved_resource.html"></iframe></div></div>
+    </div>
+  </div>
+
+
+<div class="c-slice">
+  <div class="o-container">
+    <h2 class="c-type-heading u-text-center">More articles from The MagPi magazine</h2>
+      <div class="c-slice">
+    <div class="o-container">
+      <div class="o-grid o-grid--equal-height">
+        <article class="o-grid__col rspec-article-card u-1/2@sm u-1/3@lg u-mb-x5">
+  <a class="c-card c-card--link rspec-article-card--link" data-action="Clicked article systemsix-a-modern-homage-to-macintosh-computers" data-category="articles" data-label="article-systemsix-a-modern-homage-to-macintosh-computers" href="https://magpi.raspberrypi.com/articles/systemsix-a-modern-homage-to-macintosh-computers">
+    <img alt="SystemSix: a modern homage to Macintosh computers" class="c-card__image rspec-article-card--image" src="./How to install TensorFlow on Raspberry Pi — The MagPi magazine_files/Screenshot_2022-07-29_at_10.24.46.png">
+
+    <div class="c-card__content">
+      <p class="o-type-sub-heading u-weight-bold rspec-article-card--heading">SystemSix: a modern homage to Macintosh computers</p>
+
+      <time datetime="2022-08-05T07:00:00+01:00" class="o-type-caption u-block u-mb rspec-article-card--date">about 13 hours ago.</time>
+
+      <p class="c-type-base rspec-article-card--description">John Calhoun has paid homage to his first Macintosh by creating an artistic-looking way to display useful information, as David Crookes explains</p>
+    </div>
+</a></article>
+<article class="o-grid__col rspec-article-card u-1/2@sm u-1/3@lg u-mb-x5">
+  <a class="c-card c-card--link rspec-article-card--link" data-action="Clicked article mini-pupper-robot-review" data-category="articles" data-label="article-mini-pupper-robot-review" href="https://magpi.raspberrypi.com/articles/mini-pupper-robot-review">
+    <img alt="Mini pupper robot review" class="c-card__image rspec-article-card--image" src="./How to install TensorFlow on Raspberry Pi — The MagPi magazine_files/Screenshot_2022-07-29_at_10.18.07.png">
+
+    <div class="c-card__content">
+      <p class="o-type-sub-heading u-weight-bold rspec-article-card--heading">Mini pupper robot review</p>
+
+      <time datetime="2022-08-03T07:00:00+01:00" class="o-type-caption u-block u-mb rspec-article-card--date">3 days ago.</time>
+
+      <p class="c-type-base rspec-article-card--description">This small robot dog is cute, fun, and great for robotics learning. Rob Zwetsloot takes it for walkies</p>
+    </div>
+</a></article>
+<article class="o-grid__col rspec-article-card u-1/2@sm u-1/3@lg u-mb-x5">
+  <a class="c-card c-card--link rspec-article-card--link" data-action="Clicked article pico-railway-clock" data-category="articles" data-label="article-pico-railway-clock" href="https://magpi.raspberrypi.com/articles/pico-railway-clock">
+    <img alt="Pico railway clock" class="c-card__image rspec-article-card--image" src="./How to install TensorFlow on Raspberry Pi — The MagPi magazine_files/Screenshot_2022-07-29_at_10.10.20.png">
+
+    <div class="c-card__content">
+      <p class="o-type-sub-heading u-weight-bold rspec-article-card--heading">Pico railway clock</p>
+
+      <time datetime="2022-08-01T07:00:00+01:00" class="o-type-caption u-block u-mb rspec-article-card--date">5 days ago.</time>
+
+      <p class="c-type-base rspec-article-card--description">Giving new life to a clock from yesteryear. Nicola King celebrates the relaxing and reassuring sound of classically cool timepieces</p>
+    </div>
+</a></article>
+<article class="o-grid__col rspec-article-card u-1/2@sm u-1/3@lg u-mb-x5">
+  <a class="c-card c-card--link rspec-article-card--link" data-action="Clicked article super-simple-robotics-in-the-magpi-magazine-issue-120" data-category="articles" data-label="article-super-simple-robotics-in-the-magpi-magazine-issue-120" href="https://magpi.raspberrypi.com/articles/super-simple-robotics-in-the-magpi-magazine-issue-120">
+    <img alt="Super Simple Robotics in The MagPi magazine issue #120" class="c-card__image rspec-article-card--image" src="./How to install TensorFlow on Raspberry Pi — The MagPi magazine_files/001_MagPi120_COVER_v5_mockup.jpg">
+
+    <div class="c-card__content">
+      <p class="o-type-sub-heading u-weight-bold rspec-article-card--heading">Super Simple Robotics in The MagPi magazine issue #120</p>
+
+      <time datetime="2022-07-28T10:00:00+01:00" class="o-type-caption u-block u-mb rspec-article-card--date">8 days ago.</time>
+
+      <p class="c-type-base rspec-article-card--description">Building a robot, heading back to school, and testing out the CrowPi L laptop in the latest edition of the MagPi</p>
+    </div>
+</a></article>
+<article class="o-grid__col rspec-article-card u-1/2@sm u-1/3@lg u-mb-x5">
+  <a class="c-card c-card--link rspec-article-card--link" data-action="Clicked article win-a-pecanpi-dac-rev-3-0" data-category="articles" data-label="article-win-a-pecanpi-dac-rev-3-0" href="https://magpi.raspberrypi.com/articles/win-a-pecanpi-dac-rev-3-0">
+    <img alt="Win a PecanPi DAC Rev 3.0!" class="c-card__image rspec-article-card--image" src="./How to install TensorFlow on Raspberry Pi — The MagPi magazine_files/2022-07-26_17_00_48-MagPi120.pdf_-_Adobe_Acrobat_Reader_DC__64-bit_.png">
+
+    <div class="c-card__content">
+      <p class="o-type-sub-heading u-weight-bold rspec-article-card--heading">Win a PecanPi DAC Rev 3.0!</p>
+
+      <time datetime="2022-07-27T10:30:00+01:00" class="o-type-caption u-block u-mb rspec-article-card--date">9 days ago.</time>
+
+      <p class="c-type-base rspec-article-card--description">Make your ears happy with this audio improvement add-on</p>
+    </div>
+</a></article>
+<article class="o-grid__col rspec-article-card u-1/2@sm u-1/3@lg u-mb-x5">
+  <a class="c-card c-card--link rspec-article-card--link" data-action="Clicked article night-camera-tracks-sleep-patterns" data-category="articles" data-label="article-night-camera-tracks-sleep-patterns" href="https://magpi.raspberrypi.com/articles/night-camera-tracks-sleep-patterns">
+    <img alt="Night camera tracks sleep patterns" class="c-card__image rspec-article-card--image" src="./How to install TensorFlow on Raspberry Pi — The MagPi magazine_files/Screenshot_2022-07-22_at_15.46.36.png">
+
+    <div class="c-card__content">
+      <p class="o-type-sub-heading u-weight-bold rspec-article-card--heading">Night camera tracks sleep patterns</p>
+
+      <time datetime="2022-07-25T07:00:00+01:00" class="o-type-caption u-block u-mb rspec-article-card--date">12 days ago.</time>
+
+      <p class="c-type-base rspec-article-card--description">How well do you sleep? Rob Zwetsloot takes a look at a sleep monitoring system beyond his wildest dreams</p>
+    </div>
+</a></article>
+
+      </div>
+
+      <p class="u-text-center">
+        <a class="c-button" data-action="Clicked see more articles" data-category="articles" data-label="More Articles" href="https://magpi.raspberrypi.com/articles">See more articles</a>
+      </p>
+    </div>
+  </div>
+
+  </div>
+</div>
+
+  <div class="c-slice u-box-shadow-inset">
+    <div class="o-container">
+      <h2 class="c-type-heading u-text-center rspec-subscribe-heading">
+  Subscribe to The MagPi magazine
+</h2>
+
+<div class="o-grid o-grid--center o-grid--top">
+  <div class="o-grid__col u-12/12 u-1/2@sm u-1/3@lg">
+    <img alt="Subscribe to The MagPi magazine" class="rspec-subscribe-image" src="./How to install TensorFlow on Raspberry Pi — The MagPi magazine_files/MagPi#119_Subs_345_v2.jpg">
+  </div>
+
+  <div class="o-grid__col u-12/12 u-1/2@sm u-1/3@lg u-pt u-pt-x0@sm">
+    <p class="c-type-base rspec-subscribe-description">
+      Save 35% off the cover price with a subscription to The MagPi magazine. UK subscribers get three issues for just £10 and a FREE Raspberry Pi Pico W, then pay £30 every six issues. You’ll save money and get a regular supply of in-depth reviews, features, guides and other Raspberry Pi enthusiast goodness delivered directly to your door every month.
+    </p>
+
+    <p class="c-type-base">
+      <a class="c-button" data-action="Clicked Subscribe to The MagPi magazine" data-category="subscriptions" data-label="Subscribe CTA" href="https://magpi.raspberrypi.com/subscribe/new">Subscribe</a>
+    </p>
+  </div>
+
+  <div id="gpt-ad-zuuXqbwrQ4LnVQx7" data-ad-unit-path="/21917283373/magpi" data-ad-size="mpu" class="u-text-center o-grid__col u-12/12 u-1/3@lg"></div>
+</div>
+
+    </div>
+  </div>
+
+<div id="gpt-ad-2o2A49turymJpZAu" data-ad-unit-path="/21917283373/magpi" data-ad-size="leaderboard" class="u-pv u-text-center u-bgcolor-white"></div>
+
+
+
+      </main>
+      <footer class="c-footer c-slice c-light-on-dark u-bgcolor-ui-black">
+  <div class="o-container c-footer__container">
+    <div class="c-footer__nav">
+      <ul class="c-footer-nav-list">
+          <li class="c-footer-nav-list__item">
+            <a class="c-footer-nav-list__link" href="https://magpi.raspberrypi.com/">Home</a>
+          </li>
+          <li class="c-footer-nav-list__item">
+            <a class="c-footer-nav-list__link" href="https://magpi.raspberrypi.com/about">About</a>
+          </li>
+          <li class="c-footer-nav-list__item">
+            <a class="c-footer-nav-list__link" href="https://magpi.raspberrypi.com/articles">Articles</a>
+          </li>
+          <li class="c-footer-nav-list__item">
+            <a class="c-footer-nav-list__link" href="https://magpi.raspberrypi.com/articles/category/tutorials">Tutorials</a>
+          </li>
+          <li class="c-footer-nav-list__item">
+            <a class="c-footer-nav-list__link" href="https://magpi.raspberrypi.com/articles/category/reviews">Reviews</a>
+          </li>
+          <li class="c-footer-nav-list__item">
+            <a class="c-footer-nav-list__link" href="https://magpi.raspberrypi.com/issues">Issues</a>
+          </li>
+          <li class="c-footer-nav-list__item">
+            <a class="c-footer-nav-list__link" href="https://magpi.raspberrypi.com/books">Books</a>
+          </li>
+          <li class="c-footer-nav-list__item">
+            <a class="c-footer-nav-list__link" href="https://magpi.raspberrypi.com/subscribe/new">Subscribe</a>
+          </li>
+          <li class="c-footer-nav-list__item">
+            <a class="c-footer-nav-list__link" href="https://store.rpipress.cc/collections/the-magpi-essentials">Buy now</a>
+          </li>
+          <li class="c-footer-nav-list__item">
+            <a class="c-footer-nav-list__link" href="https://magpi.raspberrypi.com/advertisers">Advertise</a>
+          </li>
+          <li class="c-footer-nav-list__item">
+            <a class="c-footer-nav-list__link" href="https://magpi.raspberrypi.com/contact">Contact us</a>
+          </li>
+          <li class="c-footer-nav-list__item">
+            <a class="c-footer-nav-list__link" href="https://www.raspberrypi.com/privacy/">Privacy Policy</a>
+          </li>
+          <li class="c-footer-nav-list__item">
+            <a class="c-footer-nav-list__link" href="https://magpi.cc/write">Write for us</a>
+          </li>
+      </ul>
+    </div>
+
+    <div class="c-footer__actions">
+      <div class="c-issue-actions c-issue-actions--footer">
+    <div data-shopify-product-handle="the-magpi-magazine-120" class="c-issue-actions__button">
+      <a class="c-button c-button--block u-hidden" data-fallback="true" href="https://store.rpipress.cc/products/the-magpi-magazine-120">Buy now</a>
+<div class=" shopify-buy-frame shopify-buy-frame--product"><div class="has-image shopify-buy__layout-vertical shopify-buy__product"><div class="shopify-buy__btn-wrapper" data-element="product.buttonWrapper"><button class="c-button c-button--block  " data-element="product.button">Buy now</button></div></div></div></div>
+    <div class="c-issue-actions__button">
+      <a class="c-button c-button--block" href="https://magpi.raspberrypi.com/subscribe/new">Subscribe</a>
+    </div>
+
+    <div class="c-issue-actions__button">
+      <a href="https://itunes.apple.com/us/app/the-magpi-magazine/id972033560?ls=1&amp;mt=8">
+        <img class="c-issue-actions__badge" src="./How to install TensorFlow on Raspberry Pi — The MagPi magazine_files/apple-app-store-0a9285e2dab19bdf07b2cefdaec13b1bdf3737bd.png">
+</a>    </div>
+
+    <div class="c-issue-actions__button">
+      <a href="https://play.google.com/store/apps/details?id=com.raspberry.magpi">
+        <img class="c-issue-actions__badge" src="./How to install TensorFlow on Raspberry Pi — The MagPi magazine_files/google-play-store-57a690fa1754b6a6d51092103eb11e3512ae7c39.png">
+</a>    </div>
+
+</div>
+
+    </div>
+
+    <div class="c-footer__social">
+      <ul class="c-social-list">
+    <li class="c-social-list__item">
+      <a class="c-social-list__link" href="https://www.youtube.com/channel/UCgZlbxTljh1aXKijTRye5bA">
+        <svg height="30px" version="1.1" viewBox="0 0 60 60" width="30px" x="0px" xml:space="preserve" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+  <path class="svg-path" fill="#ffffff" fill-rule="evenodd" d="M56.35 16.676a6.91 6.91 0 00-4.862-4.894C47.199 10.625 30 10.625 30 10.625s-17.2 0-21.488 1.157a6.91 6.91 0 00-4.863 4.894C2.5 20.993 2.5 30 2.5 30s0 9.007 1.15 13.324a6.911 6.911 0 004.862 4.894C12.8 49.375 30 49.375 30 49.375s17.2 0 21.488-1.157a6.91 6.91 0 004.863-4.894C57.5 39.007 57.5 30 57.5 30s0-9.007-1.15-13.324 M24.375 38.178L38.75 30l-14.375-8.178v16.356z"></path>
+</svg>
+
+        <span class="u-visually-hidden">Subscribe to The MagPi on YouTube</span>
+</a>    </li>
+
+    <li class="c-social-list__item">
+      <a class="c-social-list__link" href="https://www.facebook.com/MagPiMagazine">
+        <svg height="30px" version="1.1" viewBox="0 0 60.734 60.733" width="30px" x="0px" xml:space="preserve" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" y="0px">
+  <path class="svg-path" d="
+      M57.378,0.001H3.352C1.502,0.001,0,1.5,0,3.353v54.026c0,1.853,1.502,3.354,3.352,3.354h29.086V37.214h-7.914v-9.167h7.914
+      v-6.76c0-7.843,4.789-12.116,11.787-12.116c3.355,0,6.232,0.251,7.071,0.36v8.198l-4.854,0.002c-3.805,0-4.539,1.809-4.539,4.462
+      v5.851h9.078l-1.187,9.166h-7.892v23.52h15.475c1.852,0,3.355-1.503,3.355-3.351V3.351C60.731,1.5,59.23,0.001,57.378,0.001z
+    " fill="#ffffff"></path>
+</svg>
+
+        <span class="u-visually-hidden">Like The MagPi on Facebook</span>
+</a>    </li>
+
+    <li class="c-social-list__item">
+      <a class="c-social-list__link" href="https://twitter.com/TheMagPi">
+        <svg height="30px" version="1.1" viewBox="0 0 612 612" width="30px" x="0px" xml:space="preserve" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" y="0px">
+  <path class="svg-path" d="
+      M612,116.258c-22.525,9.981-46.694,16.75-72.088,19.772c25.929-15.527,45.777-40.155,55.184-69.411
+      c-24.322,14.379-51.169,24.82-79.775,30.48c-22.907-24.437-55.49-39.658-91.63-39.658c-69.334,0-125.551,56.217-125.551,125.513
+      c0,9.828,1.109,19.427,3.251,28.606C197.065,206.32,104.556,156.337,42.641,80.386c-10.823,18.51-16.98,40.078-16.98,63.101
+      c0,43.559,22.181,81.993,55.835,104.479c-20.575-0.688-39.926-6.348-56.867-15.756v1.568c0,60.806,43.291,111.554,100.693,123.104
+      c-10.517,2.83-21.607,4.398-33.08,4.398c-8.107,0-15.947-0.803-23.634-2.333c15.985,49.907,62.336,86.199,117.253,87.194
+      c-42.947,33.654-97.099,53.655-155.916,53.655c-10.134,0-20.116-0.612-29.944-1.721c55.567,35.681,121.536,56.485,192.438,56.485
+      c230.948,0,357.188-191.291,357.188-357.188l-0.421-16.253C573.872,163.526,595.211,141.422,612,116.258z
+    " fill="#ffffff"></path>
+</svg>
+
+        <span class="u-visually-hidden">Follow The MagPi on Twitter</span>
+</a>    </li>
+
+    <li class="c-social-list__item">
+      <a class="c-social-list__link" href="https://magpi.raspberrypi.com/feed">
+        <svg height="30px" version="1.1" viewBox="0 0 430.117 430.118" width="30px" x="0px" xml:space="preserve" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" y="0px">
+  <path class="svg-path" d="
+      M97.493,332.473c10.419,10.408,16.755,24.525,16.794,40.244c-0.04,15.687-6.375,29.809-16.755,40.17l-0.04,0.019
+      c-10.398,10.352-24.603,16.681-40.398,16.681c-15.775,0-29.944-6.348-40.34-16.699C6.384,402.526,0,388.422,0,372.717
+      c0-15.719,6.384-29.869,16.754-40.253v0.009c10.401-10.36,24.57-16.735,40.34-16.735C72.89,315.738,87.081,322.131,97.493,332.473z
+      M97.493,332.464v0.009c0.019,0,0.019,0,0.019,0L97.493,332.464z M16.754,412.906c0,0,0,0,0-0.019c-0.019,0-0.019,0-0.019,0
+      L16.754,412.906z M0.046,146.259v82.129c53.618,0.033,104.328,21.096,142.278,59.104c37.943,37.888,58.917,88.675,59.003,142.477
+      h0.028v0.149h82.467c-0.065-78.233-31.866-149.099-83.279-200.549C149.122,178.126,78.285,146.308,0.046,146.259z M0.196,0v82.089
+      c191.661,0.14,347.464,156.184,347.594,348.028h82.327c-0.056-118.571-48.248-225.994-126.132-303.932
+      C226.073,48.274,118.721,0.051,0.196,0z
+    " fill="#ffffff"></path>
+</svg>
+
+        <span class="u-visually-hidden">Subscribe to the The MagPi RSS feed</span>
+</a>    </li>
+</ul>
+
+    </div>
+
+    <div class="c-footer__newsletter">
+      <form action="https://magpi.us8.list-manage.com/subscribe/post?u=e31349e35c9c4dfb8bdf10e69&amp;id=e2ce89f288" class="c-form u-mb-x5" method="post" novalidate="" target="_blank">
+  <input name="b_e31349e35c9c4dfb8bdf10e69_748d641b78" type="hidden" value="">
+<input name="group[82803][262144]" type="hidden" value="1">
+<input name="group[82803][524288]" type="hidden" value="1">
+<input name="group[82803][1048576]" type="hidden" value="1">
+<input name="group[82803][2097152]" type="hidden" value="1">
+
+
+  <div class="u-clearfix">
+    <label class="c-label u-weight-bold" for="footer_newsletter_form_email">
+      The MagPi magazine newsletter
+    </label>
+
+    <input class="c-input u-mb" id="footer_newsletter_form_email" name="EMAIL" placeholder="you@example.com" type="email" value="">
+
+    <button class="c-button u-border-x2 u-1/2 u-5/12@md u-4/12@sm u-float-right" name="subscribe" type="submit">
+      Sign up
+    </button>
+  </div>
+</form>
+
+    </div>
+  </div>
+
+  <div class="c-footer__copyright">
+    <p class="c-type-caption">
+      ©2022
+      <a class="c-footer__link" href="https://www.raspberrypi.com/">Raspberry Pi Ltd</a>
+    </p>
+  </div>
+</footer>
+
+  <script src="./How to install TensorFlow on Raspberry Pi — The MagPi magazine_files/prism-core.min.js"></script>
+  <script src="./How to install TensorFlow on Raspberry Pi — The MagPi magazine_files/prism-autoloader.min.js"></script>
+
+
+  
+
+<div class="shopify-buy-frame shopify-buy-frame--toggle is-sticky" tabindex="0" role="button" aria-label="cart"><iframe horizontalscrolling="no" verticalscrolling="no" allowtransparency="true" frameborder="0" scrolling="no" name="frame-toggle" style="width: 0px; overflow: hidden; border: none; height: 0px;" src="./How to install TensorFlow on Raspberry Pi — The MagPi magazine_files/saved_resource(1).html"></iframe></div><div class="shopify-buy-cart-wrapper shopify-buy-frame shopify-buy-frame--cart"><iframe horizontalscrolling="no" verticalscrolling="no" allowtransparency="true" frameborder="0" scrolling="no" name="frame-cart" style="width: 100%; overflow: hidden; border: none;" src="./How to install TensorFlow on Raspberry Pi — The MagPi magazine_files/saved_resource(2).html"></iframe></div></body></html>
